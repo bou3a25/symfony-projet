@@ -1,0 +1,59 @@
+{% extends 'layout/template.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block content %}
+<div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Ajouter reservation</h3>
+    </div>
+    <!-- /.card-header -->
+   
+    <!-- form start -->
+    <form id="quickForm" method="post" action="">
+        <div class="card-body">
+
+        <div class="form-group">
+          <label>Date debut :</label>
+          <div class="input-group date" id="reservationdate" data-target-input="nearest">
+            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate">
+            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Date fin :</label>
+          <div class="input-group date" id="reservationdate" data-target-input="nearest">
+            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate">
+            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nom_client">nom_client</label>
+          <input type="text" name="nom_client" class="form-control" id="nom_client" placeholder="Enter nom_client">
+        </div>
+
+        <div class="form-group">
+          <label for="nom_voiture">nom_voiture</label>
+          <input type="text" name="nom_voiture" class="form-control" id="nom_voiture" placeholder="Enter nom_voiture">
+        </div>
+
+        <div class="form-group">
+          <label for="prixparjour">prix par jour</label>
+          <input type="text" name="prixparjour" class="form-control" id="prixparjour" placeholder="Enter prix par jour">
+        </div>
+        
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </div>
+    </form>
+  </div>
+  {% endblock %}
+
