@@ -1,53 +1,13 @@
-{% extends 'layout/template.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Voiture{% endblock %}
+{% block title %}Edit Voiture{% endblock %}
 
-{% block content %}
-<div class="card card-primary">
-    <div class="card-header">
-      <h3 class="card-title">Modifier Voiture</h3>
-    </div>
-    <!-- /.card-header -->
-   
-    <!-- form start -->
-    <form id="quickForm" method="post" action="">
-        <div class="card-body">
-        <div class="form-group">
-          <label for="photo">photo</label>
-          <input type="text" name="photo" class="form-control" id="photo" placeholder="select photo">
-        </div>
+{% block body %}
+    <h1>Edit Voiture</h1>
 
-        <div class="form-group">
-          <label for="nom">nom</label>
-          <input type="text" name="nom" class="form-control" id="nom" placeholder="Etrer nom">
-        </div>
+    {{ include('voiture/_form.html.twig', {'button_label': 'Update'}) }}
 
-        <div class="form-group">
-          <label for="matricule">matricule</label>
-          <input type="text" name="matricule" class="form-control" id="matricule" placeholder="Etrer matricule">
-        </div>
+    <a href="{{ path('voiture_index') }}">back to list</a>
 
-        <div class="form-group">
-          <label for="modele">modele</label>
-          <input type="text" name="modele" class="form-control" id="modele" placeholder="Etrer modele">
-        </div>
-
-        <div class="form-group">
-          <label for="prix">prix</label>
-          <input type="text" name="prix" class="form-control" id="prix" placeholder="Etrer prix">
-        </div>
-
-        <div class="form-group">
-          <label>description</label>
-          <textarea  name="description" class="form-control" id="description" placeholder="Etrer description"></textarea>
-        </div>
-        
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Modifier</button>
-      </div>
-    </form>
-  </div>
-  {% endblock %}
-
+    {{ include('voiture/_delete_form.html.twig') }}
+{% endblock %}
