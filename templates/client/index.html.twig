@@ -3,21 +3,37 @@
 {% block title %}Client{% endblock %}
 
 {% block content %}
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            
+            <!-- /.card -->
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Tel</th>
-                <th>Email</th>
-                <th>Adresse</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">DataTable</h3>
+              </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
+                  <thead>
+                  <tr role="row">
+                  <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">id</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">nom</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">prenom</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">tel</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">email</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">adresse</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">action</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>              
+                  <tr class="odd">
+               {% for client in clients %}
             <tr>
                 <td>{{ client.id }}</td>
                 <td>{{ client.nom }}</td>
@@ -26,17 +42,48 @@
                 <td>{{ client.email }}</td>
                 <td>{{ client.adresse }}</td>
                 <td>
-                    <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
-                    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
-                </td>
+                    <a href="{{ path('client_show', {'id': client.id}) }}">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                    </a>
+                    <a href="{{ path('client_edit', {'id': client.id}) }}">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button> 
+                    </a>
+                    <a href="{{ path('client_delete', {'id': client.id}) }}">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </a>
+                    </td>
+                
             </tr>
         {% else %}
             <tr>
                 <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('client_new') }}">Create new</a>
+                                      
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                  <th rowspan="1" colspan="1">id</th>
+                  <th rowspan="1" colspan="1">nom</th>
+                  <th rowspan="1" colspan="1">prenom</th>
+                  <th rowspan="1" colspan="1">tel</th>
+                  <th rowspan="1" colspan="1">email</th>
+                  <th rowspan="1" colspan="1">adresse</th>
+                  <th rowspan="1" colspan="1">action</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <a href=" {{ path('client_new') }}">
+      <button type="button" class="btn btn-primary">Create new</button> 
+      </a>
+      <!-- /.container-fluid -->
+    </section>
 {% endblock %}

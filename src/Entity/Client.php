@@ -45,9 +45,10 @@ class Client
     private $adresse;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Reservation::class, mappedBy="pk_client")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="pk_client")
      */
     private $reservations;
+
 
     public function __construct()
     {
@@ -131,7 +132,7 @@ class Client
     {
         if (!$this->reservations->contains($reservation)) {
             $this->reservations[] = $reservation;
-            $reservation->addPkClient($this);
+            $reservation->setPkClient($this);
         }
 
         return $this;
@@ -140,7 +141,10 @@ class Client
     public function removeReservation(Reservation $reservation): self
     {
         if ($this->reservations->removeElement($reservation)) {
-            $reservation->removePkClient($this);
+            // set the owning side to null (unless already changed)
+            if ($reservation->getPkClient() === $this) {
+                $reservation->setPkClient(null);
+            }
         }
 
         return $this;

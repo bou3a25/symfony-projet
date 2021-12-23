@@ -35,19 +35,18 @@ class Reservation
     private $prixparjour;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Client::class, inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="reservations")
      */
     private $pk_client;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Voiture::class, inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity=Voiture::class, inversedBy="reservations")
      */
     private $pk_voiture;
 
+   
     public function __construct()
     {
-        $this->pk_client = new ArrayCollection();
-        $this->pk_voiture = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -91,51 +90,28 @@ class Reservation
         return $this;
     }
 
-    /**
-     * @return Collection|Client[]
-     */
-    public function getPkClient(): Collection
+    public function getPkClient(): ?Client
     {
         return $this->pk_client;
     }
 
-    public function addPkClient(Client $pkClient): self
+    public function setPkClient(?Client $pk_client): self
     {
-        if (!$this->pk_client->contains($pkClient)) {
-            $this->pk_client[] = $pkClient;
-        }
+        $this->pk_client = $pk_client;
 
         return $this;
     }
 
-    public function removePkClient(Client $pkClient): self
-    {
-        $this->pk_client->removeElement($pkClient);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Voiture[]
-     */
-    public function getPkVoiture(): Collection
+    public function getPkVoiture(): ?Voiture
     {
         return $this->pk_voiture;
     }
 
-    public function addPkVoiture(Voiture $pkVoiture): self
+    public function setPkVoiture(?Voiture $pk_voiture): self
     {
-        if (!$this->pk_voiture->contains($pkVoiture)) {
-            $this->pk_voiture[] = $pkVoiture;
-        }
+        $this->pk_voiture = $pk_voiture;
 
         return $this;
     }
 
-    public function removePkVoiture(Voiture $pkVoiture): self
-    {
-        $this->pk_voiture->removeElement($pkVoiture);
-
-        return $this;
-    }
 }

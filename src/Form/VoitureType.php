@@ -18,7 +18,6 @@ class VoitureType extends AbstractType
             ->add('prix')
             ->add('modele')
             ->add('photo')
-            ->add('reservations')
         ;
     }
 

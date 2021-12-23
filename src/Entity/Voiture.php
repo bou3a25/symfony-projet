@@ -50,9 +50,11 @@ class Voiture
     private $photo;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Reservation::class, mappedBy="pk_voiture")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="pk_voitue")
      */
     private $reservations;
+
+
 
     public function __construct()
     {
@@ -148,7 +150,7 @@ class Voiture
     {
         if (!$this->reservations->contains($reservation)) {
             $this->reservations[] = $reservation;
-            $reservation->addPkVoiture($this);
+            $reservation->setPkVoiture($this);
         }
 
         return $this;
@@ -157,9 +159,13 @@ class Voiture
     public function removeReservation(Reservation $reservation): self
     {
         if ($this->reservations->removeElement($reservation)) {
-            $reservation->removePkVoiture($this);
+            // set the owning side to null (unless already changed)
+            if ($reservation->getPkVoiture() === $this) {
+                $reservation->setPkVoiture(null);
+            }
         }
 
         return $this;
     }
+
 }

@@ -17,7 +17,6 @@ class ClientType extends AbstractType
             ->add('tel')
             ->add('email')
             ->add('adresse')
-            ->add('reservations')
         ;
     }
 

@@ -1,34 +1,56 @@
 {% extends 'layout/template.html.twig' %}
 
-{% block title %}Voiture {% endblock %}
+{% block title %}Voiture{% endblock %}
 
 {% block content %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Matricule</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Modele</th>
-                <th>Photo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for voiture in voitures %}
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            
+            <!-- /.card -->
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">DataTable</h3>
+              </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
+                  <thead>
+                  <tr role="row">
+                  <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">id</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">photo</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">nom</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">matricule</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">description</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">modele</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">prix</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">action</th>
+                  </tr>
+                  </thead>
+                  <tbody>              
+                  <tr class="odd">
+                    {% for voiture in voitures %}
             <tr>
                 <td>{{ voiture.id }}</td>
+                <td>{{ voiture.photo }}</td>
                 <td>{{ voiture.nom }}</td>
                 <td>{{ voiture.matricule }}</td>
                 <td>{{ voiture.description }}</td>
-                <td>{{ voiture.prix }}</td>
                 <td>{{ voiture.modele }}</td>
-                <td>{{ voiture.photo }}</td>
+                <td>{{ voiture.prix }}</td>
                 <td>
-                    <a href="{{ path('voiture_show', {'id': voiture.id}) }}">show</a>
-                    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}">edit</a>
+                    <a href="{{ path('voiture_show', {'id': voiture.id}) }}">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                    </a>
+                    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button> 
+                    </a>
+                    <a href="{{ path('voiture_delete', {'id': voiture.id}) }}">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </a>
                 </td>
             </tr>
         {% else %}
@@ -36,8 +58,42 @@
                 <td colspan="8">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+                    
+                  </tr>                  
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                  <th rowspan="1" colspan="1">id</th>
+                    <th rowspan="1" colspan="1">photo</th>
+                  <th rowspan="1" colspan="1">nom</th>
+                  <th rowspan="1" colspan="1">matricule</th>
+                  <th rowspan="1" colspan="1">description</th>
+                  <th rowspan="1" colspan="1">modele</th>
+                  <th rowspan="1" colspan="1">prix</th>
+                  <th rowspan="1" colspan="1">action</th>
 
-    <a href="{{ path('voiture_new') }}">Create new</a>
+                  </tr>
+                  </tfoot>
+                </table></div></div>
+                <div class="row">
+                <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite"><!--Showing 1 to 10 of 57 entries--></div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                </div>
+                </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+       <a href=" {{ path('voiture_new') }}">
+      <button type="button" class="btn btn-primary">Create new</button> 
+      </a>
+    </section>
 {% endblock %}
