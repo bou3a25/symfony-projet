@@ -6,6 +6,9 @@ use App\Repository\VoitureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass=VoitureRepository::class)
@@ -50,7 +53,7 @@ class Voiture
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="pk_voitue")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="pk_voiture",cascade={"persist","remove"})
      */
     private $reservations;
 

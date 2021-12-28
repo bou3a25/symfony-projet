@@ -31,8 +31,9 @@
             </tr>
             <tr>
                 <th>Photo</th>
-                <td>{{ voiture.photo }}</td>
+                <td> <img src="{{ asset('uploads/' ~ voiture.photo) }}"style ="width:144px;height=144px"></td>                <td>{{ voiture.nom }}</td>
             </tr>
+
         </tbody>
     </table>
 
